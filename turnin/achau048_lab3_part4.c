@@ -19,7 +19,7 @@ int main(void) {
 	DDRC = 0xFF; PORTC = 0x00;
 
 	/* Insert your solution below */
-	unsigned char tmpA = 0x00;
+	unsigned char tmpA = PINA;
 	unsigned char tmpB = 0x00;
 	unsigned char tmpC = 0x00;
 
