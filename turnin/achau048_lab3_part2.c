@@ -23,9 +23,9 @@ int main(void) {
 
 	while (1) {
 		tmpA = PINA;
-		tmpC = PINC;
+		unsigned char tmpALower4Bits = (tmpA & 0x0F);
 
-		switch(tmpA){
+		switch(tmpALower4Bits){
 		case 0x00:
 			tmpC = 0x40; //Fuel Level 0 => 0100 000
 					//Not described in lab spec, assuming this is the intended behavior 
