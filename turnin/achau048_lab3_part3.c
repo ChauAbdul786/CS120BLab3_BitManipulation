@@ -14,7 +14,7 @@
 
 int main(void) {
 	/* Insert DDR and PORT initializations */
-	DDRA = 0x10; PORTA = 0x00; 
+	DDRA = 0x00; PORTA = 0x00; 
 	DDRC = 0xFF; PORTC = 0x00;
 
 	/* Insert your solution below */
@@ -23,12 +23,6 @@ int main(void) {
 
 	while (1) {
 		tmpA = PINA;
-		tmpC = PINC;
-
-		//Determine Fasten Seatbelt light first
-		if((tmpA & 0xF0) == 0x70){
-			tmpA = (tmpA | 0x80);
-		}
 
 		unsigned char tmpALower4Bits = (tmpA & 0x0F);
 
@@ -68,9 +62,15 @@ int main(void) {
 					//Fuel Level was likely mistakenly set > 15 => 0011 1111
 			break;
 		}
+
+		unsigned char tmpAHigherBitsToCheck = (tmpA & 0x70);	
+
+		if(tmpAHigherBitsToCheck == 0x30){
+			tmpC = (tmpC | 0x80);
+		}
+
 	PORTC = tmpC;
-	PORTA = tmpA;
-		
 	}
+
 	return 1;
 }
